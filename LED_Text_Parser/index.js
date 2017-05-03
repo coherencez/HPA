@@ -4,7 +4,7 @@ const container = document.getElementById('container')
   ,   textInput = document.getElementById('input')
   ,  textOutput = document.getElementById('output')
   ,      matrix = []
-  ,        word = 'hello'
+  ,    testWord = 'hello'
 
 const switchOnOrOff = (led) => {
   if(led.className === 'led off') {
@@ -15,6 +15,13 @@ const switchOnOrOff = (led) => {
   }
 }
 
+const createLetterBox = (id, assignedClass = 'letterBox') => {
+  let box = document.createElement('div')
+  box.setAttribute('class', assignedClass)
+  box.setAttribute('id', id)
+
+  return box
+}
 // const newLine = () => {
 //   let line = []
 //   for (let i = 0; i < 25; i++) {
@@ -30,12 +37,9 @@ const switchOnOrOff = (led) => {
 // for (let i = 0; i < 7; i++)
 //   matrix[i] = newLine()
 
-const newLetterBox = () => {
+const newLetterBox = (word) => {
   [...word].forEach((letter, index) => {
-     let letterBox = document.createElement('div')
-     letterBox.setAttribute('class', 'letterBox')
-     letterBox.setAttribute('id', `letterBox${index}`)
-     display.appendChild(letterBox)
+     display.appendChild(createLetterBox(`letterBox${index}`))
 
      for (let i = 0; i < 35; i++) {
        let led = document.createElement('div')
@@ -45,4 +49,4 @@ const newLetterBox = () => {
      }
   })
 }
-newLetterBox()
+newLetterBox(testWord)
