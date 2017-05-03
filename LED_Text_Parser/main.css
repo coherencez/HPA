@@ -30,6 +30,13 @@ button {
   margin-bottom: 1em;
 }
 
+.letterBox {
+  width: 150px;
+  height: 200px;
+  background-color: white;
+  display: inline-block;
+}
+
 .led {
   cursor:pointer;
   display: inline-block;
