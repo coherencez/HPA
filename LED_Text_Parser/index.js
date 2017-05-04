@@ -11,7 +11,7 @@ const container = document.getElementById('container')
 // placeholder variables to be defined/used later
 let letterCoordinates
   ,      matrix = []
-  ,    testWord = 'hello'
+  ,    testWord = 'HELLO'
 
 /******************** FETCH DATA FOR LED ************************/
 fetch('./az09.json')
@@ -73,17 +73,17 @@ const writeLetterToLED = (coordinates) => {
 // user input trimmed of whitepsace and in uppercase
 const parseUserTextInput = () => {
   if (textInput.value.length > 100) {
-    messages.innerText = 'Input too long! Please shorten your input to less than 100 characters'
+    return messages.innerText = `Input too long!
+     Please shorten your input to less than 100 characters`
   }
   else {
     return textInput.value.trim().toUpperCase()
   }
 }
 
-// validatess user input with Regex only a-z A-Z and 0-9
-// are accepted chars. also checks for a total length of
-// 100 chars or less. displays helpful user messages in
-// event of a wrong char, or if input exceeds char limit
+// validatess user input with Regex, only alphamueric chars.
+// also checks for a total length of 100 chars or less.
+// displays helpful user messages for invalid results.
 const validateUserTextInput = (e) => {
   const { value } = textInput
     ,       regex = /^[a-z A-Z0-9]+$/ig
