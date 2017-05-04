@@ -30,6 +30,10 @@ button {
   margin-bottom: 1em;
 }
 
+.messages span {
+  display: block;
+}
+
 .letterBox {
   width: 150px;
   height: 200px;
