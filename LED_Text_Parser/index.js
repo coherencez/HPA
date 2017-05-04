@@ -6,6 +6,7 @@ const container = document.getElementById('container')
   ,      matrix = []
   ,    testWord = 'hello'
 
+// changes LED's `on` status by changing the class name
 const switchOnOrOff = (led) => {
   if(led.className === 'led off') {
     led.className = 'led'
@@ -17,7 +18,7 @@ const switchOnOrOff = (led) => {
 
 const createLetterBox = (id, classAssignment = 'letterBox') => {
   let box = document.createElement('div')
-  box.setAttribute('class', classAssignment)
+  box.className = classAssignment
   box.setAttribute('id', id)
 
   return box
@@ -29,7 +30,8 @@ const populateLetterBoxWithLEDs = (index) => {
     let divs = []
     for (let j = 0; j < 5; j++) {
       let led = document.createElement('div')
-      led.onclick = function () {switchOnOrOff(this)}
+      // pre es6 function used for contextual `this`
+      led.onclick = function () { switchOnOrOff(this) }
       led.className = 'led off'
       document.getElementById(`letterBox${index}`).appendChild(led)
       divs.push(led)
@@ -48,6 +50,7 @@ const newLetterBoxes = (word) => {
   })
 }
 newLetterBoxes(testWord)
+
 console.log(`
 Matrix[x][y][z] is a 3D array
 where:
