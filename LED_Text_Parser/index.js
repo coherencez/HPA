@@ -69,16 +69,22 @@ const writeLetterToLED = (coordinates) => {
   })
 }
 
+// contains failsafe for validate functions 100 char limit, returns
+// user input trimmed of whitepsace and in uppercase
 const parseUserTextInput = () => {
   if (textInput.value.length > 100) {
-    alert('Input too long! Please shorten your input to less than 100 characters')
+    messages.innerText = 'Input too long! Please shorten your input to less than 100 characters'
   }
   else {
     return textInput.value.trim().toUpperCase()
   }
 }
 
-const validateTextInput = (e) => {
+// validatess user input with Regex only a-z A-Z and 0-9
+// are accepted chars. also checks for a total length of
+// 100 chars or less. displays helpful user messages in
+// event of a wrong char, or if input exceeds char limit
+const validateUserTextInput = (e) => {
   const { value } = textInput
     ,       regex = /^[a-z A-Z0-9]+$/ig
 
@@ -100,9 +106,9 @@ const newLetterBoxes = (word) => {
      populateLetterBoxWithLEDs(index)
   })
 }
-// newLetterBoxes(testWord)
+newLetterBoxes(testWord)
 
-textInput.addEventListener('keyup', validateTextInput)
+textInput.addEventListener('keyup', validateUserTextInput)
 
 console.log(`
 Matrix[x][y][z] is a 3D array
