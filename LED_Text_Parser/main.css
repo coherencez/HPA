@@ -1,4 +1,59 @@
-.huge {
-  font-size: 10rem;
-  color: red;
+* {
+  font-family: sans-serif;
+  background-color: slateblue;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin: 1em auto;
+}
+
+.container {
+  display: inline-block;
+  border: 5px solid white;
+  padding: 10px;
+  background-color: darkgrey;
+  position: absolute;
+  text-align: center;
+}
+
+.display {
+  width: 750px;
+  height: 210px;
+  background-color: black;
+  border: 5px ridge gray;
+  margin-bottom: 1em;
+}
+
+.letterBox {
+  width: 150px;
+  height: 200px;
+  background-color: white;
+  display: inline-block;
+}
+
+.led {
+  cursor:pointer;
+  display: inline-block;
+  margin: 5px;
+  margin-bottom: 0px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: red;
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(255, 0, 0, .75);
+  -moz-box-shadow: 0px 0px 15px 5px rgba(255, 0, 0, .75);
+  box-shadow: 0px 0px 15px 5px rgba(255, 0, 0, .75);
+}
+
+.off{
+  background-color: #222222;
+   -webkit-box-shadow: 0px 0px 0px 0px rgba(255, 255, 190, .75);
+  -moz-box-shadow: 0px 0px 0px 0px rgba(255, 255, 190, .75);
+  box-shadow: 0px 0px 0px 0px rgba(255, 255, 190, .75);
 }
