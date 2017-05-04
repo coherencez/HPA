@@ -77,6 +77,18 @@ const parseUserTextInput = () => {
     return textInput.value.trim().toUpperCase()
   }
 }
+
+const validateTextInput = (e) => {
+  const { value } = textInput
+    ,       regex = /^[a-z A-Z0-9]+$/ig
+
+  if (regex.test(value)) {
+    messages.innerText = ``
+  } else if (!regex.test(value) && value.length !== 0) {
+    messages.innerText = `Please use only valid alphanumeric characters`
+  }
+  count.innerText = `${textInput.value.length}/100 chars`
+}
 /*****************************************************************/
 
 // creates new 7x5 LED box for each letter in given word
@@ -90,16 +102,7 @@ const newLetterBoxes = (word) => {
 }
 // newLetterBoxes(testWord)
 
-textInput.addEventListener('keydown', (e) => {
-  const { value } = textInput
-  if( (e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91) || (e.keyCode > 96 && e.keyCode < 123)) {
-    () => {}
-  }
-  else {
-    messages.innerText = `Please use only upper/lower case valid alphanumeric characters only`
-  }
-  count.innerText = `${textInput.value.length}/100 chars`
-})
+textInput.addEventListener('keyup', validateTextInput)
 
 console.log(`
 Matrix[x][y][z] is a 3D array
