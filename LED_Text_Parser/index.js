@@ -44,31 +44,7 @@ const populateLetterBoxWithLEDs = (index) => {
   }
   matrix.push(lines)
 }
-
-const getCoords = () =>  {
-  // using destructuring to clone the array for
-  // safe manipulation and more declarative syntax
-  const [...letterBoxes] = matrix
-    ,   coords = []
-
-    letterBoxes.forEach((row, i) => {
-      row.forEach((divs, j) => {
-        divs.forEach((led, n) => {
-          // push a `coordinates` object into our coords array
-          // containg the 3 index values for each LED needed to
-          // write the alphanumeric characters
-          if(led.className === 'led') {
-            coords.push({i,j,n})
-          }
-        })
-      })
-    })
-  console.log(JSON.stringify(coords))
-}
-
-button.addEventListener('click', getCoords)
 /*****************************************************************/
-const H = [0,0,0,4,1,0,1,4,2,0,2,4,3,0,3,1,3,2,3,3,3,4,4,0,4,4,5,0,5,4,6,0,6,4]
 
 const newLetterBoxes = (word) => {
   [...word].forEach((letter, index) => {
@@ -94,3 +70,32 @@ x = letterBox, y = row, z = LED in row
 //   }
 // }
 // write(H)
+
+/*
+  the following was used to build the alphanumeric JSON file
+  containg all the coordinates necessary for this test. It is
+  not needed for the program anymore but is left in to show
+  how it was done
+
+const getCoords = () =>  {
+  // using destructuring to clone the array for
+  // safe manipulation and more declarative syntax
+  const [...letterBoxes] = matrix
+    ,   coords = []
+
+    letterBoxes.forEach((row, i) => {
+      row.forEach((divs, j) => {
+        divs.forEach((led, n) => {
+          // push a `coordinates` object into our coords array
+          // containg the 3 index values for each LED needed to
+          // write the alphanumeric characters
+          if(led.className === 'led') {
+            coords.push({i,j,n})
+          }
+        })
+      })
+    })
+  console.log(JSON.stringify(coords))
+}
+button.addEventListener('click', getCoords)
+*/
