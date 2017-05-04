@@ -15,38 +15,52 @@ const switchOnOrOff = (led) => {
   }
 }
 
-const createLetterBox = (id, assignedClass = 'letterBox') => {
+const createLetterBox = (id, classAssignment = 'letterBox') => {
   let box = document.createElement('div')
-  box.setAttribute('class', assignedClass)
+  box.setAttribute('class', classAssignment)
   box.setAttribute('id', id)
 
   return box
 }
-// const newLine = () => {
-//   let line = []
-//   for (let i = 0; i < 25; i++) {
-//     let led = document.createElement('div')
-//     led.onclick = function () {switchOnOrOff(this)}
-//     led.className = 'led off'
-//     display.appendChild(led)
-//     line[i] = led
-//   }
-//   return line
-// }
 
-// for (let i = 0; i < 7; i++)
-//   matrix[i] = newLine()
+const populateLetterBoxWithLEDs = (index) => {
+  let line = []
+  for (let i = 0; i < 7; i++) {
+    let divs = []
+    for (let j = 0; j < 5; j++) {
+      let led = document.createElement('div')
+      led.onclick = function () {switchOnOrOff(this)}
+      led.className = 'led off'
+      document.getElementById(`letterBox${index}`).appendChild(led)
+      divs.push(led)
+    }
+    line.push(divs)
+  }
+  matrix.push(line)
+}
 
-const newLetterBox = (word) => {
+const H = [0,0,0,4,1,0,1,4,2,0,2,4,3,0,3,1,3,2,3,3,3,4,4,0,4,4,5,0,5,4,6,0,6,4]
+
+const newLetterBoxes = (word) => {
   [...word].forEach((letter, index) => {
      display.appendChild(createLetterBox(`letterBox${index}`))
-
-     for (let i = 0; i < 35; i++) {
-       let led = document.createElement('div')
-       led.onclick = function () {switchOnOrOff(this)}
-       led.className = 'led off'
-       document.getElementById(`letterBox${index}`).appendChild(led)
-     }
+     populateLetterBoxWithLEDs(index)
   })
 }
-newLetterBox(testWord)
+newLetterBoxes(testWord)
+console.log(`
+Matrix[x][y][z] is a 3D array
+where:
+x = letterBox, y = row, z = LED in row
+`, matrix)
+
+
+
+
+// const write = (arr) => {
+//   var i = 0;
+//   while (i < arr.length){
+//     matrix[arr[i++]][arr[i++]].className = "led";
+//   }
+// }
+// write(H)
