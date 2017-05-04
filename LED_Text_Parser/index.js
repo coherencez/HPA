@@ -77,13 +77,11 @@ x = letterBox, y = row, z = LED in row
 `, matrix)
 
 
-// const write = (arr) => {
-//   var i = 0;
-//   while (i < arr.length){
-//     matrix[arr[i++]][arr[i++]][arr[i++]].className = "led";
-//   }
-// }
-// write(H)
+const write = (coordinates) => {
+  coordinates.forEach(obj => {
+    matrix[obj.i][obj.j][obj.n].className = 'led'
+  })
+}
 
 /*
   the following was used to build the alphanumeric JSON file
