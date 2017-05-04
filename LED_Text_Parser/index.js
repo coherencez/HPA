@@ -42,9 +42,9 @@ const createLetterBox = (id, classAssignment = 'letterBox') => {
 }
 
 // add 35 LED divs to each letterbox, attach an onclick
-// function to each one to allow for turning them on/off
-// append to DOM, and then pushes everything into the
-// matrix array which holds the state for the entire board
+// function to each for turning them on/off - append to DOM
+// - add everything to matrix array which holds the entire
+// LED board state
 const populateLetterBoxWithLEDs = (index) => {
   let lines = []
   for (let i = 0; i < 7; i++) {
@@ -69,7 +69,7 @@ const writeLetterToLED = (coordinates) => {
   })
 }
 
-const parseTextInput = () => {
+const parseUserTextInput = () => {
   if (textInput.value.length > 100) {
     alert('Input too long! Please shorten your input to less than 100 characters')
   }
