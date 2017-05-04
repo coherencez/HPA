@@ -4,6 +4,8 @@ const container = document.getElementById('container')
   ,     display = document.getElementById('display')
   ,   textInput = document.getElementById('input')
   ,  textOutput = document.getElementById('output')
+  ,    messages = document.getElementById('messages')
+  ,       count = document.getElementById('count')
   ,      button = document.getElementById('button')
 
 // placeholder variables to be defined/used later
@@ -87,6 +89,17 @@ const newLetterBoxes = (word) => {
   })
 }
 // newLetterBoxes(testWord)
+
+textInput.addEventListener('keydown', (e) => {
+  const { value } = textInput
+  if( (e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91) || (e.keyCode > 96 && e.keyCode < 123)) {
+    () => {}
+  }
+  else {
+    messages.innerText = `Please use only upper/lower case valid alphanumeric characters only`
+  }
+  count.innerText = `${textInput.value.length}/100 chars`
+})
 
 console.log(`
 Matrix[x][y][z] is a 3D array
