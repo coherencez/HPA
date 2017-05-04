@@ -1,3 +1,4 @@
+'use strict'
 // grab all necessary DOM elements for manipulation
 const container = document.getElementById('container')
   ,     display = document.getElementById('display')
