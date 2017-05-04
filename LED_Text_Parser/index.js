@@ -59,16 +59,34 @@ const populateLetterBoxWithLEDs = (index) => {
   }
   matrix.push(lines)
 }
+
+// WIP -- working for first box only right now
+const writeLetterToLED = (coordinates) => {
+  coordinates.forEach(obj => {
+    matrix[obj.i][obj.j][obj.n].className = 'led'
+  })
+}
+
+const parseTextInput = () => {
+  if (textInput.value.length > 100) {
+    alert('Input too long! Please shorten your input to less than 100 characters')
+  }
+  else {
+    return textInput.value.trim().toUpperCase()
+  }
+}
 /*****************************************************************/
 
 // creates new 7x5 LED box for each letter in given word
 const newLetterBoxes = (word) => {
   [...word].forEach((letter, index) => {
+    // console.log(letterCoordinates[letter])
+    // writeLetterToLED(letterCoordinates[letter])
      display.appendChild(createLetterBox(`letterBox${index}`))
      populateLetterBoxWithLEDs(index)
   })
 }
-newLetterBoxes(testWord)
+// newLetterBoxes(testWord)
 
 console.log(`
 Matrix[x][y][z] is a 3D array
@@ -77,16 +95,23 @@ x = letterBox, y = row, z = LED in row
 `, matrix)
 
 
-const write = (coordinates) => {
-  coordinates.forEach(obj => {
-    matrix[obj.i][obj.j][obj.n].className = 'led'
-  })
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
   the following was used to build the alphanumeric JSON file
   containg all the coordinates necessary for this test. It is
-  not needed for the program anymore but is left in to show
+  currently not needed for the program but is left in to show
   how it was done
 
 const getCoords = () =>  {
