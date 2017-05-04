@@ -5,11 +5,24 @@ const container = document.getElementById('container')
   ,   textInput = document.getElementById('input')
   ,  textOutput = document.getElementById('output')
   ,      button = document.getElementById('button')
+
+// placeholder variables to be defined later
+let letterCoordinates
   ,      matrix = []
-  ,    testWord = 'h'
+  ,    testWord = 'hello'
 
-/******************** HELPER FUNCTIONS **************************/
+/******************** FETCH DATA FOR LED ************************/
+fetch('./az09.json')
+  .then(response => response.json())
+  .then(data => {
+    letterCoordinates = data
+    console.log(`DATA is loaded`)
+  })
+  .catch(console.error)
+/*****************************************************************/
 
+
+/******************** HELPER FUNCTIONS ***************************/
 // switch "LED" div's className on or off
 const switchOnOrOff = (led) => {
   if(led.className === 'led off') {
