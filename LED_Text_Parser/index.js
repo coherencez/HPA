@@ -6,7 +6,7 @@ const container = document.getElementById('container')
   ,  textOutput = document.getElementById('output')
   ,      button = document.getElementById('button')
 
-// placeholder variables to be defined later
+// placeholder variables to be defined/used later
 let letterCoordinates
   ,      matrix = []
   ,    testWord = 'hello'
@@ -21,9 +21,7 @@ fetch('./az09.json')
   .catch(console.error)
 /*****************************************************************/
 
-
 /******************** HELPER FUNCTIONS ***************************/
-// switch "LED" div's className on or off
 const switchOnOrOff = (led) => {
   if(led.className === 'led off') {
     led.className = 'led'
@@ -41,6 +39,10 @@ const createLetterBox = (id, classAssignment = 'letterBox') => {
   return box
 }
 
+// add 35 LED divs to each letterbox, attach an onclick
+// function to each one to allow for turning them on/off
+// append to DOM, and then pushes everything into the
+// matrix array which holds the state for the entire board
 const populateLetterBoxWithLEDs = (index) => {
   let lines = []
   for (let i = 0; i < 7; i++) {
@@ -59,6 +61,7 @@ const populateLetterBoxWithLEDs = (index) => {
 }
 /*****************************************************************/
 
+// creates new 7x5 LED box for each letter in given word
 const newLetterBoxes = (word) => {
   [...word].forEach((letter, index) => {
      display.appendChild(createLetterBox(`letterBox${index}`))
@@ -72,8 +75,6 @@ Matrix[x][y][z] is a 3D array
 where:
 x = letterBox, y = row, z = LED in row
 `, matrix)
-
-
 
 
 // const write = (arr) => {
@@ -94,7 +95,7 @@ const getCoords = () =>  {
   // using destructuring to clone the array for
   // safe manipulation and more declarative syntax
   const [...letterBoxes] = matrix
-    ,   coords = []
+    ,             coords = []
 
     letterBoxes.forEach((row, i) => {
       row.forEach((divs, j) => {
@@ -103,7 +104,7 @@ const getCoords = () =>  {
           // containg the 3 index values for each LED needed to
           // write the alphanumeric characters
           if(led.className === 'led') {
-            coords.push({i,j,n})
+            coords.push( { i, j, n} )
           }
         })
       })
