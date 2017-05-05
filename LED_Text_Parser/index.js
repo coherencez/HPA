@@ -81,7 +81,7 @@ const parseUserTextInput = () => {
   }
 }
 
-// validatess user input with Regex, only alphamueric chars.
+// validatess user input with Regex, only alphanumeric chars.
 // also checks for a total length of 100 chars or less.
 // displays helpful user messages for invalid results.
 const validateUserTextInput = (e) => {
