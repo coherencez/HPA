@@ -13,6 +13,7 @@ let letterCoordinates
   ,      matrix = []
   ,    testWord = 'HELLO'
 
+const REGEX = /^[a-z A-Z0-9]+$/ig
 /******************** FETCH DATA FOR LED ************************/
 fetch('./az09.json')
   .then(response => response.json())
@@ -72,11 +73,13 @@ const writeLetterToLED = (coordinates) => {
 // contains failsafe for validate functions 100 char limit, returns
 // user input trimmed of whitepsace and in uppercase
 const parseUserTextInput = () => {
-  if (textInput.value.length > 100) {
+  const { value } = textInput
+
+  if (value.length > 100) {
     return messages.innerText = `Input too long!
      Please shorten your input to less than 100 characters`
   }
-  else {
+  else if (REGEX.test(value)) {
     return textInput.value.trim().toUpperCase()
   }
 }
@@ -86,11 +89,10 @@ const parseUserTextInput = () => {
 // displays helpful user messages for invalid results.
 const validateUserTextInput = (e) => {
   const { value } = textInput
-    ,       regex = /^[a-z A-Z0-9]+$/ig
 
-  if (regex.test(value)) {
+  if (REGEX.test(value)) {
     messages.innerText = ``
-  } else if (!regex.test(value) && value.length !== 0) {
+  } else if (!REGEX.test(value) && value.length !== 0) {
     messages.innerText = `Please use only valid alphanumeric characters`
   }
   count.innerText = `${textInput.value.length}/100 chars`
