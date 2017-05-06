@@ -3,6 +3,7 @@
 const express = require('express')
   ,       app = express()
   ,bodyParser = require('body-parser')
+  ,     fetch = require('node-fetch')
 
 // APP CONSTANTS
 const PORT = 3000
