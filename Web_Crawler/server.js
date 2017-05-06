@@ -29,8 +29,12 @@ app.post('/', ({ body: { uri }}, res) => {
     .then(html => {
       const $ = load(html)
       const aTags = Array.from($('a'))
-
-      console.log(`array of links`, aTags)
+      // const offsite = aTags.filter(el => {
+      //   if(typeof el.attribs.href === 'string') {
+      //     console.log('hey', el.attribs.href)
+      //     return !el.attribs.href.includes(uri)
+      //   }
+      // })
     })
     .catch(console.error)
 
