@@ -21,8 +21,8 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.post('/', (req, res) => {
-  console.log(`this is the form request`, req.body)
+app.post('/', ({ body: { uri }}, res) => {
+  console.log(`this is the form request`, uri)
   res.redirect('/')
 })
 
