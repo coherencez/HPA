@@ -4,6 +4,7 @@ const express = require('express')
   ,       app = express()
   ,bodyParser = require('body-parser')
   ,     fetch = require('node-fetch')
+  ,  { load } = require('cheerio')
 
 // APP CONSTANTS
 const PORT = 3000
@@ -22,7 +23,17 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', ({ body: { uri }}, res) => {
-  console.log(`this is the form request`, uri)
+
+  fetch(uri)
+    .then(response => response.text())
+    .then(html => {
+      const $ = load(html)
+      const aTags = Array.from($('a'))
+
+      console.log(`array of links`, aTags)
+    })
+    .catch(console.error)
+
   res.redirect('/')
 })
 
